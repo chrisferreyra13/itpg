@@ -16,6 +16,7 @@ from frites.workflow import WfMi
 from frites import set_mpl_style
 
 import matplotlib.pyplot as plt
+
 set_mpl_style()
 
 
@@ -75,4 +76,4 @@ mi, _ = wf.fit(dt, mcp=None, n_jobs=1)
 plt.plot(time, mi)
 plt.xlabel("Time (s)"), plt.ylabel("MI (bits)")
 plt.title('I(C; C | D)')
-plt.show()
+plt.show(block=True)

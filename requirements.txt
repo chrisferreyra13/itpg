@@ -1,3 +1,1 @@
-numpy>=1.18.1
-scipy>=1.4.1
-mne>=1.1.0
+frites
