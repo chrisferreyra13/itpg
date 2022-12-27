@@ -1,0 +1,14 @@
+include LICENSE.txt
+include requirements.txt
+include itpg/__init__.py
+
+
+recursive-include itpg *.py
+
+### Exclude
+recursive-exclude itpg *.pyc
+
+exclude .github
+
+recursive-exclude doc *
+recursive-exclude logo *
