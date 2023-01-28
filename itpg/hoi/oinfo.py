@@ -1,0 +1,51 @@
+"""O-Information."""
+# Code inspired from BrainHack Marseille 2022 and Frites python package.
+# Authors: Christian Ferreyra, chrisferreyra13@gmail.com
+# Date: 01/2023
+
+import numpy as np
+from ..entropy.entropy_gaussian import entropy_g_tensor, entropy_g_loop
+
+
+def compute_oinfo(x, ind):
+    """Compute the O-info.
+
+    Parameters
+    ----------
+    x : ndarray, shape (..., n_vars, n_trials)
+        Multidimensional data array.
+    ind : list
+        Indices for tensor computations.
+
+    Returns
+    -------
+    float
+        O-Information.
+    """
+    nvars = x.shape[-2]
+    o = (nvars - 2) * entropy_g_tensor(x)
+    o += (entropy_g_tensor(x[..., np.newaxis, :])
+          - entropy_g_tensor(x[..., ind, :])).sum(1)
+
+    return o
+
+
+def compute_oinfo_loop(x):
+    nvars, _ = x.shape
+
+    # (n - 2) * H(X^n)
+    o = (nvars - 2) * entropy_g(x)
+
+    for j in range(nvars):
+        # sum_{j=1...n}( H(X_{j}) - H(X_{-j}^n) )
+        o += entropy_g(x[[j], :]) - entropy_g(np.delete(x, j, axis=0))
+
+    return o
+
+# @jax.jit
+# def oinfo_jax_tensor(x, ind):
+#     nvars, _ = x.shape
+#     o = (nvars - 2) * jnb_ent_g_nd(x[np.newaxis, ...])
+#     o += (jnb_ent_g_nd(x[:, np.newaxis, :]) -
+#           jnb_ent_g_nd(x[ind[:, 1:], :])).sum(0)
+#     return o

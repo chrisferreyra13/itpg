@@ -5,3 +5,4 @@
 from ._version import __version__
 
 from . import entropy
+from . import hoi

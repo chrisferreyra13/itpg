@@ -2,6 +2,8 @@
 
 Open source Python library with useful functions and examples on Information Theory. Built on the shoulders of giants like Frites, dit, etc., it contains different functions for discrete and continuous data with applications on brain data.
 
+As the title expresses, this is my playground to explore and work on information theory. Feel free to use it :smile
+
 ## Installing ITPG
 To install the latest stable version of ITPG, you can use [pip](https://pip.pypa.io/en/stable/) in a terminal:  
 ```sh
@@ -22,4 +24,3 @@ git clone https://github.com/chrisferreyra13/itpg.git
 - Python >= 3.7
 - Frites
 - dit
-- Numpy
