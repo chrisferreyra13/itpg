@@ -1,1 +1,4 @@
 frites
+pycodestyle
+pydocstyle
+autopep8
