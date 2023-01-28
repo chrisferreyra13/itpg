@@ -3,3 +3,4 @@ pycodestyle
 pydocstyle
 autopep8
 dit
+seaborn
