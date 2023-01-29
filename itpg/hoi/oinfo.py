@@ -4,7 +4,7 @@
 # Date: 01/2023
 
 import numpy as np
-from ..entropy.entropy_gaussian import entropy_g_tensor, entropy_g_loop
+from ..entropy.entropy_gaussian import entropy_gauss_nd, entropy_gauss
 
 
 def compute_oinfo(x, ind):
@@ -23,9 +23,9 @@ def compute_oinfo(x, ind):
         O-Information.
     """
     nvars = x.shape[-2]
-    o = (nvars - 2) * entropy_g_tensor(x)
-    o += (entropy_g_tensor(x[..., np.newaxis, :])
-          - entropy_g_tensor(x[..., ind, :])).sum(1)
+    o = (nvars - 2) * entropy_gauss_nd(x)
+    o += (entropy_gauss_nd(x[..., np.newaxis, :])
+          - entropy_gauss_nd(x[..., ind, :])).sum(1)
 
     return o
 
@@ -34,11 +34,11 @@ def compute_oinfo_loop(x):
     nvars, _ = x.shape
 
     # (n - 2) * H(X^n)
-    o = (nvars - 2) * entropy_g(x)
+    o = (nvars - 2) * entropy_gauss(x)
 
     for j in range(nvars):
         # sum_{j=1...n}( H(X_{j}) - H(X_{-j}^n) )
-        o += entropy_g(x[[j], :]) - entropy_g(np.delete(x, j, axis=0))
+        o += entropy_gauss(x[[j], :]) - entropy_gauss(np.delete(x, j, axis=0))
 
     return o
 

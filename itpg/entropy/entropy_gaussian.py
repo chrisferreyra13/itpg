@@ -6,7 +6,7 @@
 import numpy as np
 
 
-def entropy_g_tensor(x):
+def entropy_gauss_nd(x):
     """Entropy of a tensor of shape (..., n_vars, n_trials)."""
     nvarx, ntrl = x.shape[-2], x.shape[-1]
 
@@ -22,7 +22,7 @@ def entropy_g_tensor(x):
     return hx
 
 
-def entropy_g(x):
+def entropy_gauss(x):
     nvarx, ntrl = x.shape
 
     # covariance
@@ -35,10 +35,10 @@ def entropy_g(x):
     return hx
 
 
-def entropy_g_loop(x):
+def entropy_gauss_loop(x):
     h = []
     for k in range(x.shape[0]):
-        h.append(entropy_g(x[k, ...]))
+        h.append(entropy_gauss(x[k, ...]))
     return h
 
 
