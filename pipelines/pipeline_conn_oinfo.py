@@ -83,3 +83,5 @@ if __name__ == '__main__':
     except Exception as ex:
         logging.error(ex)
         logging.error('Error when running pipeline')
+
+    logging.info('Succesful')
