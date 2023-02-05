@@ -1,4 +1,4 @@
-"""Compute connectivity based on O-info."""
+"""Compute connectivity based on O-Info."""
 # Authors: Christian Ferreyra, chrisferreyra13@gmail.com
 # Date: 01/2023
 import logging
@@ -16,6 +16,7 @@ def read_data(data_filepath):
 
 
 def generate_test_data():
+    """Generate random data with linear relationships."""
     n_trials = 300
     n_roi = 6
     n_times = 600
@@ -36,8 +37,8 @@ def generate_test_data():
     return x, trials, times, roi
 
 
-def pipeline_conn_oinfo(dataset_name, filename):
-    """Compute O-info connectivity for brain data."""
+def pipeline_conn_oinfo(dataset_name, filename, output_path):
+    """Compute O-Info connectivity for brain data."""
     # setup input data and output folder
     # init output folder
 
@@ -62,7 +63,7 @@ def pipeline_conn_oinfo(dataset_name, filename):
 
     # plot result
     logging.info('Plotting results')
-    plot_oinfo(oinfo)
+    plot_oinfo(oinfo)  # , output_path)
 
 
 if __name__ == '__main__':
@@ -71,15 +72,15 @@ if __name__ == '__main__':
     dataset_name = 'dataset-test'
     filename = 'test.txt'
 
-    output_folder = setup_output_folder(analysis_name)
+    output_path = setup_output_folder(analysis_name)
 
     # init logging
     log_filepath = os.path.join(
-        output_folder, analysis_name+'.log')
+        output_path, analysis_name+'.log')
     setup_logging(log_filepath)
 
     try:
-        pipeline_conn_oinfo(dataset_name, filename)
+        pipeline_conn_oinfo(dataset_name, filename, output_path)
     except Exception as ex:
         logging.error(ex)
         logging.error('Error when running pipeline')

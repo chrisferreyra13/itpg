@@ -7,15 +7,19 @@ import numpy as np
 
 
 def entropy_gauss_nd(x):
-    """Entropy of a tensor of shape (..., n_vars, n_trials)."""
+    """Entropy of a gaussian tensor of shape (..., n_vars, n_trials)."""
     nvarx, ntrl = x.shape[-2], x.shape[-1]
 
-    # covariance
+    # sample covariance
+    # the variables are gaussian with zero mean
     c = np.einsum('...ij, ...kj->...ik', x, x)
     c /= float(ntrl - 1.)
+    # c = L*L.H
     chc = np.linalg.cholesky(c)
+    # |c|=|chc|^2, |chc|=(product of the diagonal elements of chc)
 
     # entropy in nats
+    # 0.5*log(|chc|^2) = sum(log(diag(chc))) --> log of product is sum of log
     hx = (np.log(np.einsum('...ii->...i', chc)).sum(-1)
           + 0.5 * nvarx * (np.log(2 * np.pi) + 1.0))
 
@@ -23,19 +27,27 @@ def entropy_gauss_nd(x):
 
 
 def entropy_gauss(x):
+    """Entropy of a gaussian random process of shape (n_vars, v_trials)."""
     nvarx, ntrl = x.shape
 
-    # covariance
+    # sample covariance
+    # the variables are gaussian with zero mean
     c = np.dot(x, x.T) / float(ntrl - 1)
+    # c = chc*chc^(conjugate transpose)
     chc = np.linalg.cholesky(c)
+    # |c|=|chc|^2, |chc|=(product of the diagonal elements of chc)
 
     # entropy in nats
+    # 0.5*log(|chc|^2) = sum(log(diag(chc))) --> log of product is sum of log
     hx = np.sum(np.log(np.diag(chc))) + 0.5 * nvarx * (
         np.log(2 * np.pi) + 1.0)
+
     return hx
 
 
 def entropy_gauss_loop(x):
+    """Entropy of a gaussian random process."""
+    # x with shape (n_times, n_vars, n_trials)
     h = []
     for k in range(x.shape[0]):
         h.append(entropy_gauss(x[k, ...]))
