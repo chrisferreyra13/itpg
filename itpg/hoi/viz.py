@@ -7,7 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from frites import set_mpl_style
 
-from itpg.utils import get_figs_path
+from cfutils.workflow import get_figs_path
 
 set_mpl_style()
 

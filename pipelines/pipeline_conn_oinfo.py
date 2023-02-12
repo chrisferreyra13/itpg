@@ -7,7 +7,8 @@ import os
 import xarray as xr
 
 from itpg.hoi import conn_hoi, plot_oinfo
-from itpg.utils import setup_output_folder, setup_logging, get_input_filepath
+from cfutils.workflow import setup_output_folder, get_input_filepath
+from cfutils.pyutils import setup_logging
 from itpg.data import generate_data, set_lin_relationship
 
 
