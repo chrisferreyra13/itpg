@@ -7,3 +7,4 @@ from ._version import __version__
 from . import entropy
 from . import hoi
 from . import data
+from . import complexity

@@ -6,7 +6,7 @@
 
 import numpy as np
 
-from itpg.entropy.permut_entropy import (
+from ..permutation_entropy import (
     permutation_entropy, permutation_entropy_map, ordinal_patterns)
 
 
