@@ -1,6 +1,6 @@
 """Connectivity of higher order interactions."""
 # Code inspired from BrainHack Marseille 2022 and Frites python package.
-# Authors: Christian Ferreyra, chrisferreyra13@gmail.com
+# Modified: Christian Ferreyra, chrisferreyra13@gmail.com
 # Date: 01/2023
 
 import numpy as np
