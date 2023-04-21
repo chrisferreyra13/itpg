@@ -4,4 +4,4 @@
 
 from .oinfo import compute_oinfo
 from .utils import get_combinations
-from .connectivity import conn_hoi
+from .conn_oinfo import conn_hoi
