@@ -5,7 +5,7 @@
 from ._version import __version__
 
 from . import entropy
-from . import conn
+from . import connectivity
 from . import data
 from . import complexity
 from . import viz
