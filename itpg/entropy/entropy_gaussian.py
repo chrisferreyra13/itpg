@@ -1,5 +1,5 @@
 """Gaussian entropy."""
-# Code inspired from BrainHack Marseille 2022 and Frites python package.
+# Source code from Frites python package.
 # Modified: Christian Ferreyra, chrisferreyra13@gmail.com
 # Date: 01/2023
 
@@ -12,9 +12,10 @@ def entropy_gauss_nd(x):
 
     # sample covariance
     # the variables are gaussian with zero mean
+    # so cov(x,x) = sum(xx^T)/N-1
     c = np.einsum('...ij, ...kj->...ik', x, x)
     c /= float(ntrl - 1.)
-    # c = L*L.H
+    # c = L*L.H in order to compute the determinant
     chc = np.linalg.cholesky(c)
     # |c|=|chc|^2, |chc|=(product of the diagonal elements of chc)
 
