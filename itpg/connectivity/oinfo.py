@@ -25,7 +25,7 @@ def compute_oinfo(x, ind):
     nvars = x.shape[-2]
     o = (nvars - 2) * entropy_gauss_nd(x)
     o += (entropy_gauss_nd(x[..., np.newaxis, :])
-          - entropy_gauss_nd(x[..., ind, :])).sum(1)
+          - entropy_gauss_nd(x[..., ind, :])).sum(-1)
 
     return o
 

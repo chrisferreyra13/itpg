@@ -137,4 +137,4 @@ testing/
 # vscode
 .vscode
 
-./data
+data

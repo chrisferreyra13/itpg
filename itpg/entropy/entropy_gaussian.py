@@ -9,7 +9,6 @@ import numpy as np
 def entropy_gauss_nd(x):
     """Entropy of a gaussian tensor of shape (..., n_vars, n_trials)."""
     nvarx, ntrl = x.shape[-2], x.shape[-1]
-
     # sample covariance
     # the variables are gaussian with zero mean
     # so cov(x,x) = sum(xx^T)/N-1
@@ -30,7 +29,6 @@ def entropy_gauss_nd(x):
 def entropy_gauss(x):
     """Entropy of a gaussian random process of shape (n_vars, v_trials)."""
     nvarx, ntrl = x.shape
-
     # sample covariance
     # the variables are gaussian with zero mean
     c = np.dot(x, x.T) / float(ntrl - 1)

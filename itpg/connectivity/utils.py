@@ -11,11 +11,11 @@ def get_combinations(n, k, roi, task_related=False):
     """Get combinations."""
     combs = np.array(list(itertools.combinations(np.arange(n), k)))
 
-    # add behavior as a final columns
+    # add target (behaviour) as a final columns
     if task_related:
         combs = np.c_[combs, np.full((combs.shape[0],), n)]
 
-    # build brain region names
+    # build region names
     roi_st = ['-'.join(r) for r in roi[combs].tolist()]
 
     return combs, roi_st
