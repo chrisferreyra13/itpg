@@ -1,5 +1,5 @@
 """Multivariate data generators."""
-# Part of the code is inspired from Frites python package.
+# Part of the code is from Frites python package.
 # Authors: Christian Ferreyra, chrisferreyra13@gmail.com
 # Date: 01/2023
 

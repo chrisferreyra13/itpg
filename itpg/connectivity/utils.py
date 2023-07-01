@@ -1,5 +1,5 @@
 """Useful functions for computing higher order interactions."""
-# Code inspired from BrainHack Marseille 2022 and Frites python package.
+# Code source from BrainHack Marseille 2022 and Frites python package.
 # Modified: Christian Ferreyra, chrisferreyra13@gmail.com
 # Date: 01/2023
 
